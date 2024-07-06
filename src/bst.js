@@ -104,18 +104,16 @@ class BST {
         }
 
         return root;
-            
-        // If value vs root.data found this root is the node to be deleted, therefore consider different cases for deletion
-        // If you are deleting a node it depends what you are returning in it's place for the parent node setting its left and right children in the recursion
-        /* You can return either null not to be confused with the other null base case for when you return null which the left and right child of the parent was already set to.
-        This is due to the root being null so when returned into the parent it was always null originally anyways. */
-        /* If the root to delete has one child that is also easy. Simply return its child for its parent to pick up when the recursion is over and it is setting it's right or left child
-        as the path the recursion follows. */
-        /* If the root to delete has two children begin doing the following: 
-           1. Move to it's right subtree. 
-           2. Move to it's leftmost node in it's right subtree.
-           2. then recursively delete that element. 
-        */
+    }
+
+    find(root, value) {
+        if (root === null) {
+            return false;
+        } else if (root.data === value) {
+            return true;
+        } 
+
+        return this.find(root.left, value) || this.find(root.right, value);
     }
 }
 

@@ -21,6 +21,7 @@ root = tree.delete(root, 70);
 root = tree.delete(root, 50);
 
 console.log(tree.prettyPrint(root));
+console.log(tree.find(root, 80));
 
 
 
