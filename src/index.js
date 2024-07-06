@@ -1,20 +1,5 @@
-// Template code is for testing and example import purposes
+import BST from "./bst.js";
 
-import "./styles.css";
-import exampleImage from "Images/ahtziri-lagarde-4_FsMDmCc6A-unsplash.jpg";
+let tree = new BST();
 
-function component() {
-  const element = document.createElement("div");
-
-  element.classList.add("test");
-
-  // Add the image to our existing div.
-  const myIcon = new Image();
-  myIcon.src = exampleImage;
-
-  element.append("Hi", myIcon);
-
-  return element;
-}
-
-document.body.appendChild(component());
+console.log(tree.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]));
