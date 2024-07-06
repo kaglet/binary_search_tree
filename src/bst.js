@@ -42,6 +42,10 @@ class BST {
     }
 
      insert(root, value) {
+        if (this.find(root, value)) {
+            return;
+        }
+
         if (root === null) {
             return new Node(value);
         }
