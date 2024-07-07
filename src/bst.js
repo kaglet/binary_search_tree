@@ -1,4 +1,5 @@
 import Node from "./node.js";
+import { Queue } from '@datastructures-js/queue';
 
 class BST {
     constructor() {
@@ -118,6 +119,52 @@ class BST {
         } 
 
         return this.find(root.left, value) || this.find(root.right, value);
+    }
+
+    printArray(node) {
+        console.log(node);
+    }
+
+    // Fix default callback implementation which is to return an array
+    levelorder(root, callback = this.printArray) {
+        let q = new Queue();
+        q.enqueue(root);
+        while (q.size() !== 0) {
+            // TODO: Get queue that pops first element not the last one
+            let node = q.dequeue();
+            callback(node.data);
+            if (node.getLeft() !== null) {
+                q.enqueue(node.getLeft());
+            }
+            
+            if (node.getRight() !== null) {
+                q.enqueue(node.getRight());
+            }
+        }     
+    }
+
+    inorder(root, callback = this.printArray) {
+        if (root === null) return;
+
+        this.inorder(root.getLeft());
+        callback(root.data);
+        this.inorder(root.getRight());
+    }
+
+    preorder(root, callback = this.printArray) {
+        if (root === null) return;
+
+        callback(root.data);
+        this.inorder(root.getLeft());
+        this.inorder(root.getRight());
+    }
+
+    postorder(root, callback = this.printArray) {
+        if (root === null) return;
+
+        this.inorder(root.getLeft());
+        this.inorder(root.getRight());
+        callback(root.data);
     }
 }
 

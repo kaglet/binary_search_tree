@@ -16,12 +16,18 @@ root = tree.insert(root, 70);
 root = tree.insert(root, 60);
 root = tree.insert(root, 80);
 
-root = tree.delete(root, 20);
-root = tree.delete(root, 70);
-root = tree.delete(root, 50);
+// root = tree.delete(root, 20);
+// root = tree.delete(root, 70);
+// root = tree.delete(root, 50);
 
+console.log(root);
 console.log(tree.prettyPrint(root));
 console.log(tree.find(root, 80));
+
+console.log(tree.levelorder(root));
+console.log(tree.preorder(root));
+console.log(tree.postorder(root));
+console.log(tree.inorder(root));
 
 
 
