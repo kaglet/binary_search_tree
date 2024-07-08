@@ -167,6 +167,7 @@ class BST {
         callback(root.data);
     }
 
+
     height(root) {
         if (root === null) return - 1;
 
@@ -177,8 +178,26 @@ class BST {
     }
 
     // Return depth of node including if it does not exist or it is the root node
-    depth(root) {
-        
+    depth(node) {
+        if (node === null) return -1;
+    
+        if (this.root.data === node.data) return 0;
+    
+        let leftDepth = depth(this.root.getLeft());
+        let rightDepth = depth(this.root.getRight());
+    
+        // Only one of them left or right will yield a value greater than or equal to 0 since the target node is only found in one path not both recursively
+        if (leftDepth >= 0) {
+            return 1 + leftDepth;
+        } else if (rightDepth >= 0 ) {
+            return 1 + rightDepth;
+        }
+    
+        return -1;
+    }
+
+    isBalanced(root) {
+        if (root === null) return - 1;
     }
 }
 
