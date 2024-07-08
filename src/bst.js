@@ -166,6 +166,20 @@ class BST {
         this.inorder(root.getRight());
         callback(root.data);
     }
+
+    height(root) {
+        if (root === null) return - 1;
+
+        let heightLeft = this.height(root.getLeft());
+        let heightRight = this.height(root.getRight());
+
+        return 1 + Math.max(heightLeft, heightRight);
+    }
+
+    // Return depth of node including if it does not exist or it is the root node
+    depth(root) {
+        
+    }
 }
 
 export default BST;
