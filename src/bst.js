@@ -178,18 +178,25 @@ class BST {
     }
 
     // Return depth of node including if it does not exist or it is the root node
-    depth(node) {
-        if (node === null) return -1;
+    // We traverse from the root, but the root's left is always the same I mean the new root then
+    depth(node, root) {
+        // If you get to a root and it is -1 you did not find the node in this branch
+        // the left or right branch rather should detect and return a number, the other branch will be avoided
+        // ask what is your depth if you have the target node
+        if (node === null || root === null) return -1;
     
-        if (this.root.data === node.data) return 0;
+        if (root.data === node.data) return 0;
     
-        let leftDepth = depth(this.root.getLeft());
-        let rightDepth = depth(this.root.getRight());
-    
-        // Only one of them left or right will yield a value greater than or equal to 0 since the target node is only found in one path not both recursively
+        let leftDepth = this.depth(node, root.getLeft());
+
         if (leftDepth >= 0) {
             return 1 + leftDepth;
-        } else if (rightDepth >= 0 ) {
+        }
+        
+        let rightDepth = this.depth(node, root.getRight());
+    
+        // Only one of them left or right will yield a value greater than or equal to 0 since the target node is only found in one path not both recursively
+        if (rightDepth >= 0 ) {
             return 1 + rightDepth;
         }
     
