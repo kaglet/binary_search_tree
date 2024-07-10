@@ -15,6 +15,10 @@ class BST {
         let mid = Math.floor((start + end) / 2);
         let root = new Node(array[mid]);
 
+        if (root.data === undefined) {
+            return null;
+        }
+
         root.setLeft(this.recursivelyBuild(array, start, mid - 1));
         root.setRight(this.recursivelyBuild(array, mid + 1, end));
 
