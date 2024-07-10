@@ -242,7 +242,9 @@ class BST {
 
         let arrayOfNodes = this.inorder(this.root);
 
-        return this.buildTree(arrayOfNodes);
+        this.root = this.buildTree(arrayOfNodes);
+
+        return this.root;
     }
 }
 

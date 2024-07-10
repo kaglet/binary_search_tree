@@ -24,3 +24,20 @@ console.log(tree.levelorder(tree.root));
 console.log(tree.preorder(tree.root));
 console.log(tree.inorder(tree.root));
 console.log(tree.postorder(tree.root));
+
+tree.insert(tree.root, 190);
+tree.insert(tree.root, 200);
+tree.insert(tree.root, 114);
+tree.insert(tree.root, 300);
+
+console.log(tree.isBalanced());
+
+tree.rebalance();
+
+tree.prettyPrint(tree.root)
+console.log(tree.isBalanced());
+
+console.log(tree.levelorder(tree.root));
+console.log(tree.preorder(tree.root));
+console.log(tree.inorder(tree.root));
+console.log(tree.postorder(tree.root));
