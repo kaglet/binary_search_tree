@@ -203,8 +203,23 @@ class BST {
         return -1;
     }
 
-    isBalanced(root) {
-        if (root === null) return - 1;
+    isBalanced() {
+        if (this.root === null) return true;
+        let heightDiff = this.height(this.root.getLeft()) - this.height(this.root.getRight());
+
+        if (Math.abs(heightDiff) > 1) {
+            return false;
+        }
+
+        return true;
+    }
+
+    rebalance() {
+        if (this.isBalanced()) return this.root;
+
+        let arrayOfNodes = this.inorder(this.root);
+
+        return this.buildTree(arrayOfNodes);
     }
 }
 
