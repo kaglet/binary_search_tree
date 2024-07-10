@@ -121,18 +121,21 @@ class BST {
         return this.find(root.left, value) || this.find(root.right, value);
     }
 
-    printArray(node) {
-        console.log(node);
-    }
-
     // Fix default callback implementation which is to return an array
-    levelorder(root, callback = this.printArray) {
+    levelorder(root, callback = undefined) {
         let q = new Queue();
+        let resultsArr = [];
         q.enqueue(root);
         while (q.size() !== 0) {
             // TODO: Get queue that pops first element not the last one
             let node = q.dequeue();
-            callback(node.data);
+            
+            if (callback === undefined) {
+                resultsArr.push(node.data);
+            } else {
+                callback(node);
+            }
+
             if (node.getLeft() !== null) {
                 q.enqueue(node.getLeft());
             }
@@ -141,24 +144,46 @@ class BST {
                 q.enqueue(node.getRight());
             }
         }     
+
+        if (callback === undefined) {
+            return resultsArr;
+        }
     }
 
-    inorder(root, callback = this.printArray) {
+    inorder(root, callback = undefined) {
         if (root === null) return [];
 
-        return [...this.inorder(root.getLeft()), root.data, ...this.inorder(root.getRight())];
+        if (callback === undefined) {
+            return [...this.inorder(root.getLeft()), root.data, ...this.inorder(root.getRight())];
+        } else {
+            this.inorder(root.getLeft(), callback);
+            callback(root);
+            this.inorder(root.getRight(), callback);
+        }
     }
 
-    preorder(root, callback = this.printArray) {
+    preorder(root, callback = undefined) {
         if (root === null) return [];
 
-        return [root.data, ...this.inorder(root.getLeft()), ...this.inorder(root.getRight())];
+        if (callback === undefined) {
+            return [root.data, ...this.inorder(root.getLeft()), ...this.inorder(root.getRight())];
+        } else {
+            callback(root);
+            this.inorder(root.getLeft(), callback);
+            this.inorder(root.getRight(), callback);
+        }
     }
 
-    postorder(root, callback = this.printArray) {
+    postorder(root, callback = undefined) {
         if (root === null) return [];
 
-        return [...this.inorder(root.getLeft()), ...this.inorder(root.getRight()), root.data];      
+        if (callback === undefined) {
+            return [...this.inorder(root.getLeft()), ...this.inorder(root.getRight()), root.data]; 
+        } else {
+            this.inorder(root.getLeft(), callback);
+            this.inorder(root.getRight(), callback);
+            callback(root);
+        }
     }
 
 

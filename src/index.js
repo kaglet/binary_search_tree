@@ -21,13 +21,17 @@ tree.root = tree.insert(tree.root, 80);
 // tree.root = tree.delete(tree.root, 50);
 
 console.log(tree.root);
-console.log(tree.prettyPrint(tree.root));
+tree.prettyPrint(tree.root)
 console.log(tree.find(tree.root, 80));
 
-console.log(tree.levelorder(tree.root));
-console.log(tree.preorder(tree.root));
-console.log(tree.postorder(tree.root));
-console.log(tree.inorder(tree.root));
+function log(node) {
+    console.log(node.data);
+}
+
+tree.levelorder(tree.root, undefined);
+// tree.preorder(tree.root, log = undefined)
+// tree.postorder(tree.root, log)
+// tree.inorder(tree.root, log)
 
 console.log(tree.height(tree.root));
 console.log(tree.depth(null, tree.root));
