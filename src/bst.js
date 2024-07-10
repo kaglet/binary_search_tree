@@ -144,27 +144,21 @@ class BST {
     }
 
     inorder(root, callback = this.printArray) {
-        if (root === null) return;
+        if (root === null) return [];
 
-        this.inorder(root.getLeft());
-        callback(root.data);
-        this.inorder(root.getRight());
+        return [...this.inorder(root.getLeft()), root.data, ...this.inorder(root.getRight())];
     }
 
     preorder(root, callback = this.printArray) {
-        if (root === null) return;
+        if (root === null) return [];
 
-        callback(root.data);
-        this.inorder(root.getLeft());
-        this.inorder(root.getRight());
+        return [root.data, ...this.inorder(root.getLeft()), ...this.inorder(root.getRight())];
     }
 
     postorder(root, callback = this.printArray) {
-        if (root === null) return;
+        if (root === null) return [];
 
-        this.inorder(root.getLeft());
-        this.inorder(root.getRight());
-        callback(root.data);
+        return [...this.inorder(root.getLeft()), ...this.inorder(root.getRight()), root.data];      
     }
 
 
